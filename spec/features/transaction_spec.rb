@@ -4,7 +4,7 @@ RSpec.describe 'Taransaction', type: :feature do
   include Devise::Test::IntegrationHelpers
   let(:user) { User.create(name: 'Name', email: 'a@mail.com', password: 'password') }
   let(:category) { user.categories.create(name: 'CATEGORY', icon: 'cat_icon') }
-  let(:transaction) { user.rransaction.create(name: 'food money', amouunt: 100, user:, category:) }
+  let(:transaction) { user.transactions.create(name: 'food money', amouunt: 100, user:, category:) }
 
   describe 'index page' do
     before(:each) do
@@ -13,10 +13,10 @@ RSpec.describe 'Taransaction', type: :feature do
     end
 
     it 'I can see the transaction name ' do
-      expect(page).to have_content 'Transaction'
+      expect(page).to have_content transaction.name
     end
-    it 'I can see the category icon' do
-      expect(page).to have_content 'icon'
+    it 'I can see the transaction amount' do
+      expect(page).to have_content transaction.amouunt
     end
   end
 end

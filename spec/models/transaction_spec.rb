@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
   describe 'should be valid with valid attributes' do
-    user = User.create(name: 'name')
-    category = Category.create(name: 'Food', icon: 'category icon', user:)
-    transaction = Transaction.create(name: 'food money', amouunt: 100, user:, category:)
+    let(:user) { User.create(name: 'Name', email: 'a@mail.com', password: 'password') }
+    let(:category) { user.categories.create(name: 'CATEGORY', icon: 'cat_icon') }
+    let(:transaction) { user.transactions.create(name: 'food money', amouunt: 100, category:) }
 
     it 'should save the valid object' do
       expect(transaction).to be_valid

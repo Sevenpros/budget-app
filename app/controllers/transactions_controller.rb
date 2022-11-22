@@ -13,6 +13,12 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+    @categories = Category.all.map { |c| [c.name, c.id] }
+
+    # @categories = []
+    # current_user.categories.each do |c|
+    #   @categories << [c.name, c.id]
+    # end
   end
 
   # GET /transactions/1/edit
@@ -20,7 +26,7 @@ class TransactionsController < ApplicationController
 
   # POST /transactions or /transactions.json
   def create
-    @transaction = Transaction.new(transaction_params)
+    @transaction = current_user.transactions.new(transaction_params)
 
     respond_to do |format|
       if @transaction.save
@@ -65,6 +71,6 @@ class TransactionsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def transaction_params
-    params.require(:transaction).permit(:name, :amouunt)
+    params.require(:transaction).permit(:name, :amouunt, :category_id)
   end
 end

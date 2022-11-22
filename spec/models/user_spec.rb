@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'User must have all attributes to be valid' do
-    user = User.create(name: 'Name')
+    let(:user) { User.create(name: 'Name', email: 'a@mail.com', password: 'password') }
 
     it 'should be valid with valid attributes' do
       expect(user).to be_valid
