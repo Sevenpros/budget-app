@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Category', type: :feature do
   include Devise::Test::IntegrationHelpers
   let(:user) { User.create(name: 'Name', email: 'a@mail.com', password: 'password') }
-  let(:category) { user.categories.create(name: 'CATEGORY', icon: 'cat_icon') }
+  let(:category) { user.categories.create(name: 'CATEGORY', icon: File.open('test/files/image.png', 'rb')) }
 
   describe 'index page' do
     before(:each) do
@@ -15,7 +15,7 @@ RSpec.describe 'Category', type: :feature do
       expect(page).to have_content 'Categories'
     end
     it 'I can see the category icon' do
-      expect(page).to have_content 'icon'
+      expect(page).to have_content 'Icon'
     end
   end
 end

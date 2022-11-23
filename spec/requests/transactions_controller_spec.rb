@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe 'Transactions', type: :request do
   include Devise::Test::IntegrationHelpers
   let(:user) { User.create(name: 'Name', email: 'a@mail.com', password: 'password') }
-  let(:category) { user.categories.create(name: 'CATEGORY', icon: 'cat_icon') }
+  let(:category) { user.categories.create(name: 'CATEGORY', icon: File.open('test/files/image.png', 'rb')) }
   let(:transaction) { user.transactions.create(name: 'food money', amouunt: 100, user:, category:) }
 
   context 'GET /index' do
     before(:each) do
       sign_in user
-      get '/transactions'
+      get "/categories/#{category.id}/transactions"
     end
     it 'transactions index is successful' do
       expect(response).to have_http_status(:ok)
@@ -27,7 +27,7 @@ RSpec.describe 'Transactions', type: :request do
   context 'GET /show' do
     before(:each) do
       sign_in user
-      get "/transactions/#{transaction.id}"
+      get "/categories/#{category.id}/transactions/#{transaction.id}"
     end
     it 'transactions show is successful' do
       expect(response).to have_http_status(:ok)

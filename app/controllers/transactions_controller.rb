@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.where(category_id: params[:category_id])
   end
 
   # GET /transactions/1 or /transactions/1.json
@@ -14,11 +14,6 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
     @categories = Category.all.map { |c| [c.name, c.id] }
-
-    # @categories = []
-    # current_user.categories.each do |c|
-    #   @categories << [c.name, c.id]
-    # end
   end
 
   # GET /transactions/1/edit
@@ -26,11 +21,14 @@ class TransactionsController < ApplicationController
 
   # POST /transactions or /transactions.json
   def create
-    @transaction = current_user.transactions.new(transaction_params)
+    @transaction = current_user.transactions.build(transaction_params)
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to transaction_url(@transaction), notice: 'Transaction was successfully created.' }
+        format.html do
+          redirect_to category_transactions_url(@transaction.category_id),
+                      notice: 'Transaction was successfully created.'
+        end
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new, status: :unprocessable_entity }

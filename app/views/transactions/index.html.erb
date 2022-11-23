@@ -1,4 +1,5 @@
 <p style="color: green"><%= notice %></p>
+<%= link_to "Back to Categories", categories_path %>
 
 <h1>Transactions</h1>
 
@@ -6,9 +7,9 @@
   <% @transactions.each do |transaction| %>
     <%= render transaction %>
     <p>
-      <%= link_to "Show this transaction", transaction %>
+      <%= link_to "Show this transaction", category_transaction_path(transaction.category_id,transaction) %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New transaction", new_transaction_path %>
+<%= link_to "New transaction", new_category_transaction_path %>

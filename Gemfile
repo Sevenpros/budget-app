@@ -16,8 +16,9 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails-controller-testing'
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+gem 'image_processing'
 gem 'jsbundling-rails'
-
+gem 'shrine'
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem 'turbo-rails'
 

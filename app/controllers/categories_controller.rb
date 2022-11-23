@@ -5,6 +5,10 @@ class CategoriesController < ApplicationController
   # GET /categories or /categories.json
   def index
     @categories = Category.all
+    # @total_amount = 0
+    # @categories.each do |c|
+    #   @total_amount += Transaction.find(:total).where(category_id: c.id)
+    # end
   end
 
   # GET /categories/1 or /categories/1.json
@@ -24,8 +28,9 @@ class CategoriesController < ApplicationController
     @category = current_user.categories.build(category_params)
 
     if @category.save
-      format.html { redirect_to category_url(@category), notice: 'Category was successfully created.' }
-      format.json { render :show, status: :created, location: @category }
+      redirect_to categories_url
+      # format.html { redirect_to categories_url, notice: 'Category was successfully created.' }
+      # format.json { render :show, status: :created, location: @category }
     else
       format.html { render :new, status: :unprocessable_entity }
       format.json { render json: @category.errors, status: :unprocessable_entity }
