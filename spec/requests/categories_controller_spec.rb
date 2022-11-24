@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Categories', type: :request do
   include Devise::Test::IntegrationHelpers
   let(:user) { User.create(name: 'Name', email: 'a@mail.com', password: 'password') }
-  let(:category) { user.categories.create(name: 'CATEGORY', icon: 'cat_icon') }
+  let(:category) { user.categories.create(name: 'CATEGORY', icon: File.open('test/files/image.png', 'rb')) }
 
   context 'GET /categories' do
     before(:each) do

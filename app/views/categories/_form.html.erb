@@ -18,7 +18,9 @@
 
   <div>
     <%= form.label :icon, style: "display: block" %>
-    <%= form.text_field :icon %>
+      <%= image_tag form.category.icon_url if category.cached_icon_data %>
+      <%= form.hidden_field :icon, value: category.cached_icon_data %> 
+    <%= form.file_field :icon %>
   </div>
 
   <div>
