@@ -7,10 +7,20 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
   </head>
 
   <body>
-    <%= yield %>
+  
+    <main>
+      <%= render 'shared/navbar' %>
+        <div class="max-w-9xl mx-auto px-4 py-2 sm:px-6 lg:px-8 ">
+        <div class="mx-auto max-w-9xl ">
+          <%= yield %>
+        </div>
+        </div>
+    </main>
+
+
   </body>
 </html>
