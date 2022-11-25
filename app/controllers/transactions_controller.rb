@@ -4,7 +4,8 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    @transactions = Transaction.where(category_id: params[:category_id])
+    @transactions = Transaction.includes(:category).where(category_id: params[:category_id])
+    @category = Category.find(params[:category_id])
   end
 
   # GET /transactions/1 or /transactions/1.json
@@ -13,6 +14,8 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+    @category = Category.find(params[:category_id])
+
     @categories = Category.all.map { |c| [c.name, c.id] }
   end
 

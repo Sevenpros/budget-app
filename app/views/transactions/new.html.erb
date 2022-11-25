@@ -1,5 +1,4 @@
-<h1>New transaction</h1>
-
+<strong><h2><%= @category.name%></h2></strong>
 <%= form_with model: @transaction, url: category_transactions_url do |form| %>
   <% if @transaction.errors.any? %>
     <div style="color: red">
@@ -12,27 +11,26 @@
       </ul>
     </div>
   <% end %>
-   <div class="field">
-      <%= form.label :category, style: "display: block" %>
-      <%= form.select:category_id, options_for_select(@categories),{include_blank: "Select Category"},{required: true, class: "form-select "} %>   
-   </div>
+ 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :name, style: "display: block", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+    <%= form.hidden_field :category_id, value: @category.id %>
   </div>
 
   <div>
-    <%= form.label :amount, style: "display: block" %>
-    <%= form.number_field :amouunt %>
+    <%= form.label :amount, style: "display: block", class: "form-label" %>
+    <%= form.number_field :amouunt, class: "form-control" %>
   </div>
-
+ <div class="alet">
+    <p class="notice"><%= notice%></p>
+    <p class="alert"><%= alert%></p>
+  </div>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Save Transaction", class: "btn btn-primary mt-1 col" %>
   </div>
 <% end %>
 
 <br>
 
-<div>
-  <%= link_to "Back to transactions", category_transactions_path %>
-</div>
+

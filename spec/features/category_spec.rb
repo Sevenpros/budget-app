@@ -14,8 +14,5 @@ RSpec.describe 'Category', type: :feature do
     it 'I can see the category name ' do
       expect(page).to have_content 'Categories'
     end
-    it 'I can see the category icon' do
-      expect(page).to have_content 'Icon'
-    end
   end
 end
