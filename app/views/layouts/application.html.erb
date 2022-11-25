@@ -11,13 +11,16 @@
   </head>
 
   <body>
-  <div class="max-w-9xl mx-auto px-4 py-2 sm:px-6 lg:px-8 ">
-      <div class="mx-auto max-w-9xl ">
-        <main>
-          <%= render 'shared/navbar' %>
+  
+    <main>
+      <%= render 'shared/navbar' %>
+        <div class="max-w-9xl mx-auto px-4 py-2 sm:px-6 lg:px-8 ">
+        <div class="mx-auto max-w-9xl ">
           <%= yield %>
-        </main>
-      </div>
-    </div>
+        </div>
+        </div>
+    </main>
+
+
   </body>
 </html>
