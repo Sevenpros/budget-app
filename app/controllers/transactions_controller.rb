@@ -14,6 +14,8 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+    @category = Category.find(params[:category_id])
+
     @categories = Category.all.map { |c| [c.name, c.id] }
   end
 

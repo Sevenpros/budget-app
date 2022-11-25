@@ -1,4 +1,4 @@
-
+<strong><h2><%= @category.name%></h2></strong>
 <%= form_with model: @transaction, url: category_transactions_url do |form| %>
   <% if @transaction.errors.any? %>
     <div style="color: red">
@@ -11,13 +11,11 @@
       </ul>
     </div>
   <% end %>
-   <div class="field">
-      <%= form.label :category, style: "display: block", class: "form-label" %>
-      <%= form.select:category_id, options_for_select(@categories),{include_blank: "Select Category"},{required: true, class: "form-select "} %>   
-   </div>
+ 
   <div>
     <%= form.label :name, style: "display: block", class: "form-label" %>
     <%= form.text_field :name, class: "form-control" %>
+    <%= form.hidden_field :category_id, value: @category.id %>
   </div>
 
   <div>
